@@ -110,46 +110,6 @@ export function ProductRevealCard({
     hover: { scale: 1.1 }
   };
 
-  const overlayVariants: Variants = {
-    rest: {
-      y: "100%",
-      opacity: 0,
-      filter: "blur(4px)"
-    },
-    hover: {
-      y: "0%",
-      opacity: 1,
-      filter: "blur(0px)",
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 28,
-        mass: 0.6,
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const contentVariants: Variants = {
-    rest: {
-      opacity: 0,
-      y: 20,
-      scale: 0.95
-    },
-    hover: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 25,
-        mass: 0.5
-      }
-    }
-  };
-
   const buttonVariantsMotion: Variants = {
     rest: { scale: 1, y: 0 },
     hover: shouldAnimate
@@ -196,8 +156,9 @@ export function ProductRevealCard({
       variants={containerVariants}
       tabIndex={0}
       className={cn(
-        "group relative w-80 cursor-pointer overflow-hidden rounded-lg border border-slate-200 bg-white text-slate-900",
+        "product-reveal-card group relative w-80 cursor-pointer overflow-hidden rounded-lg border border-slate-200 bg-white text-slate-900",
         "shadow-[0_20px_60px_rgba(15,23,42,0.10)] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/40",
+        isRevealed && "product-reveal-card--revealed",
         className
       )}
     >
@@ -287,20 +248,19 @@ export function ProductRevealCard({
         </div>
       </div>
 
-      <motion.div
+      <div
         data-slot="product-reveal-overlay"
-        variants={overlayVariants}
         className="product-reveal-overlay absolute inset-0 flex flex-col justify-end text-white"
       >
         <div className="space-y-4 p-6">
-          <motion.div variants={contentVariants}>
+          <div>
             <h4 className="mb-2 text-base font-bold">Product Details</h4>
             <p className="text-sm leading-relaxed text-white/88">
               {description}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div variants={contentVariants}>
+          <div>
             <div className="grid grid-cols-2 gap-3 text-xs">
               {features.slice(0, 2).map((feature) => (
                 <div
@@ -312,9 +272,9 @@ export function ProductRevealCard({
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div variants={contentVariants} className="space-y-3">
+          <div className="space-y-3">
             <motion.a
               href={enquiryUrl}
               target="_blank"
@@ -345,9 +305,9 @@ export function ProductRevealCard({
             >
               View Details
             </motion.a>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
