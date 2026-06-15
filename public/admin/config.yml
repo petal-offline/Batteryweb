@@ -1,0 +1,77 @@
+backend:
+  name: github
+  repo: petal-offline/Batteryweb
+  branch: main
+  base_url: https://kcel.pages.dev
+  auth_endpoint: /api/auth
+
+local_backend: true
+
+media_folder: public/uploads
+public_folder: /uploads
+site_url: https://kcel.pages.dev
+display_url: https://kcel.pages.dev
+logo_url: /images/battery-cells-lab.png
+
+collections:
+  - name: products
+    label: Products
+    label_singular: Product
+    folder: content/products
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}} - {{stockStatus}} - {{price}}"
+    editor:
+      preview: false
+    fields:
+      - label: Product Name
+        name: name
+        widget: string
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Lithium-ion
+          - NMC
+          - LFP
+          - Battery Cell
+      - label: Product Description
+        name: description
+        widget: text
+      - label: Image Upload
+        name: image
+        widget: image
+        choose_url: false
+        default: /images/battery-cells-lab.png
+      - label: Price
+        name: price
+        widget: string
+        hint: Use exact pricing, a range, or text such as "Contact for Quote".
+      - label: Stock Status
+        name: stockStatus
+        widget: select
+        options:
+          - In Stock
+          - Low Stock
+          - Contact for Quote
+          - Out of Stock
+      - label: Sort Order
+        name: sortOrder
+        widget: number
+        value_type: int
+        min: 1
+        default: 10
+      - label: Specifications
+        name: specifications
+        widget: list
+        summary: "{{fields.label}}: {{fields.value}}"
+        fields:
+          - label: Specification Name
+            name: label
+            widget: string
+          - label: Specification Value
+            name: value
+            widget: string

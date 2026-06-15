@@ -1,0 +1,6 @@
+name = "kcel-website"
+compatibility_date = "2026-06-15"
+pages_build_output_dir = "out"
+
+[vars]
+NEXT_PUBLIC_SITE_URL = "https://kcel.pages.dev"
