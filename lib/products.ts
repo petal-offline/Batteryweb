@@ -34,9 +34,15 @@ function isProduct(value: unknown): value is Product {
     typeof product.image === "string" &&
     typeof product.voltage === "string" &&
     typeof product.capacity === "string" &&
-    typeof product.stockStatus === "string" &&
-    Array.isArray(product.specifications)
+    typeof product.stockStatus === "string"
   );
+}
+
+function normalizeProduct(product: Product): Product {
+  return {
+    ...product,
+    specifications: Array.isArray(product.specifications) ? product.specifications : []
+  };
 }
 
 export function getProducts(): Product[] {
@@ -56,7 +62,7 @@ export function getProducts(): Product[] {
         throw new Error(`Invalid product data in ${filePath}`);
       }
 
-      return parsed;
+      return normalizeProduct(parsed);
     })
     .sort((a, b) => (a.sortOrder ?? 999) - (b.sortOrder ?? 999));
 }
