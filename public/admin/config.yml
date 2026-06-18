@@ -48,11 +48,11 @@ collections:
       - label: Voltage
         name: voltage
         widget: string
-        hint: Example: 3.2V
+        hint: "Example: 3.2V"
       - label: Capacity
         name: capacity
         widget: string
-        hint: Example: 100Ah or 5000mAh
+        hint: "Example: 100Ah or 5000mAh"
       - label: Price
         name: price
         widget: string
