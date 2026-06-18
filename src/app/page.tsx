@@ -52,7 +52,7 @@ export default function Home() {
             </span>
             <span>
               <ShieldCheck size={18} aria-hidden="true" />
-              NMC and LFP cells
+              NMC / LFP cells
             </span>
             <span>
               <Factory size={18} aria-hidden="true" />

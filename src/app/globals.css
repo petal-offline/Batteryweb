@@ -57,6 +57,7 @@ body {
     sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -233,8 +234,7 @@ img {
 .hero {
   position: relative;
   display: flex;
-  height: clamp(560px, calc(100svh - 150px), 720px);
-  min-height: 0;
+  min-height: clamp(620px, calc(100svh - 120px), 780px);
   isolation: isolate;
   overflow: hidden;
   color: var(--white);
@@ -280,6 +280,7 @@ img {
   line-height: 0.98;
   letter-spacing: 0;
   text-wrap: balance;
+  text-shadow: 0 14px 42px rgba(0, 0, 0, 0.42);
 }
 
 .hero-copy {
@@ -342,8 +343,10 @@ img {
 
 .primary-action {
   color: var(--white);
-  background: #128c4a;
-  box-shadow: 0 16px 36px rgba(18, 140, 74, 0.24);
+  background: linear-gradient(135deg, #16a257 0%, #0d6b72 100%);
+  box-shadow:
+    0 16px 36px rgba(18, 140, 74, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .primary-action:hover,
@@ -386,8 +389,9 @@ img {
   color: rgba(255, 255, 255, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(10, 18, 22, 0.42);
   backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .intro-band,
@@ -398,6 +402,8 @@ img {
 }
 
 .intro-band {
+  position: relative;
+  z-index: 1;
   background:
     linear-gradient(180deg, #f7faf9 0%, #eef4f4 100%);
   border-bottom: 1px solid var(--line);
@@ -723,6 +729,8 @@ img {
 .footer-grid address span,
 .footer-grid address a {
   gap: 10px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .footer-grid address a {
@@ -874,8 +882,8 @@ img {
   }
 
   .hero {
-    height: clamp(500px, calc(100svh - 176px), 620px);
-    min-height: 0;
+    min-height: max(680px, calc(100svh - 72px));
+    height: auto;
     background-position: 64% center;
   }
 
@@ -886,7 +894,8 @@ img {
   }
 
   .hero-inner {
-    padding: 42px 0 30px;
+    margin: 0 auto;
+    padding: 48px 0 72px;
   }
 
   .eyebrow {
@@ -903,7 +912,7 @@ img {
 
   .hero-actions {
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 22px;
   }
 
   .hero-actions a {
@@ -919,7 +928,9 @@ img {
 
   .trust-row {
     gap: 8px;
-    margin-top: 20px;
+    margin-top: 22px;
+    padding-right: 48px;
+    padding-bottom: 2px;
   }
 
   .trust-row span {
@@ -967,10 +978,15 @@ img {
   }
 
   .floating-whatsapp {
-    right: 16px;
-    bottom: 16px;
-    width: 54px;
-    height: 54px;
+    right: 8px;
+    bottom: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .floating-whatsapp svg {
+    width: 23px;
+    height: 23px;
   }
 }
 

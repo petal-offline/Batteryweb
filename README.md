@@ -4,6 +4,16 @@ Production static website for KULDEEP COMMUNICATION & ELECTRONICS (KCEL), a New 
 
 The site is built with Next.js static export and Decap CMS. Product inventory lives in Git as JSON under `content/products`, so CMS edits commit back to the repository and trigger a Cloudflare Pages rebuild.
 
+Current deployment details:
+
+```text
+Temporary site: https://batteryweb-8d0.pages.dev/
+Temporary admin: https://batteryweb-8d0.pages.dev/admin/
+GitHub repo: https://github.com/petal-offline/Batteryweb
+Final domain chosen by client: thekcel.com
+Final admin after DNS setup: https://thekcel.com/admin/
+```
+
 ## Setup
 
 Requirements:
@@ -82,16 +92,16 @@ CMS configuration lives at:
 public/admin/config.yml
 ```
 
-Before production, update these values:
+Current testing values:
 
 ```yml
 backend:
-  repo: your-github-org/kcel-website
+  repo: petal-offline/Batteryweb
   branch: main
-  base_url: https://kcel.pages.dev
+  base_url: https://batteryweb-8d0.pages.dev
 
-site_url: https://kcel.pages.dev
-display_url: https://kcel.pages.dev
+site_url: https://batteryweb-8d0.pages.dev
+display_url: https://batteryweb-8d0.pages.dev
 ```
 
 For local CMS testing, run the local Decap backend in one terminal:
@@ -123,7 +133,7 @@ Node.js version: 20 or newer
 ```
 
 5. Deploy once to create the temporary `pages.dev` URL.
-6. Update `public/admin/config.yml` with the real GitHub repo and `pages.dev` URL.
+6. Update `public/admin/config.yml` with the real GitHub repo and `pages.dev` URL if it changes.
 7. Commit and push the CMS config update.
 
 ## GitHub Authentication For CMS
@@ -137,13 +147,13 @@ Create a GitHub OAuth app:
 3. Use the Cloudflare Pages site as the homepage URL, for example:
 
 ```text
-https://kcel.pages.dev/admin
+https://batteryweb-8d0.pages.dev/admin/
 ```
 
 4. Use the callback URL:
 
 ```text
-https://kcel.pages.dev/api/auth/callback
+https://batteryweb-8d0.pages.dev/api/auth/callback
 ```
 
 5. Copy the GitHub client ID and client secret.
@@ -168,25 +178,25 @@ Do not commit OAuth secrets to the repository.
 
 ## Moving From pages.dev To The Final Domain
 
-After the client buys the domain through Cloudflare:
+After the client connects `thekcel.com` through Cloudflare:
 
 1. Open the Cloudflare Pages project.
 2. Go to **Custom domains**.
-3. Add the final domain, for example `kcelbattery.com`.
+3. Add the final domain: `thekcel.com`.
 4. Follow Cloudflare DNS prompts until the domain is active.
 5. Update `public/admin/config.yml`:
 
 ```yml
-base_url: https://kcelbattery.com
-site_url: https://kcelbattery.com
-display_url: https://kcelbattery.com
+base_url: https://thekcel.com
+site_url: https://thekcel.com
+display_url: https://thekcel.com
 ```
 
 6. Update the GitHub OAuth app:
 
 ```text
-Homepage URL: https://kcelbattery.com/admin
-Authorization callback URL: https://kcelbattery.com/api/auth/callback
+Homepage URL: https://thekcel.com/admin/
+Authorization callback URL: https://thekcel.com/api/auth/callback
 ```
 
 7. Commit and push the config change.
@@ -208,7 +218,7 @@ Use the final domain once it is connected. During testing, use the `pages.dev` a
 
 Click **Login with GitHub**.
 
-Use the approved GitHub account that has write access to the website repository. After login, the CMS dashboard opens.
+Use an approved GitHub account that has write access to `petal-offline/Batteryweb`. There is no separate website password. After GitHub login, the CMS dashboard opens.
 
 ### 3. Modify An Existing Product Price
 
@@ -229,9 +239,34 @@ Decap CMS commits the change to GitHub. Cloudflare Pages then rebuilds and repub
 5. Set the sort order if the product should appear in a specific position.
 6. Click **Save**.
 
-### 5. Publish Timeline
+### 5. Remove An Existing Product
+
+1. Click **Products**.
+2. Select the product to remove.
+3. Use the delete action in the CMS editor.
+4. Confirm the deletion.
+5. Save or publish the change.
+
+### 6. Publish Timeline
 
 After saving, the CMS commits the update to GitHub. Cloudflare Pages automatically starts a rebuild. Most small content changes appear on the live site within one to three minutes, depending on Cloudflare queue time.
+
+## Agent Handoff Notes
+
+Future coding agents should start with:
+
+```text
+AGENTS.md
+README.md
+public/admin/config.yml
+content/products/
+src/app/page.tsx
+src/app/globals.css
+components/product-showcase.tsx
+components/ui/product-reveal-card.tsx
+```
+
+`AGENTS.md` contains the implementation map, deployment assumptions, Decap CMS auth model, and the exact steps needed when moving from `batteryweb-8d0.pages.dev` to `thekcel.com`.
 
 ## Contact Details Used On The Site
 
