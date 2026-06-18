@@ -66,10 +66,6 @@ export function ProductShowcase({ products }: ProductShowcaseProps) {
           <p className="section-kicker">Product showcase</p>
           <h2 id="products-title">Choose a cell category</h2>
         </div>
-        <p>
-          Hover or tap a category to reveal the catalog link. Each product page
-          enquiry opens a WhatsApp picker with both KCEL sales numbers.
-        </p>
       </div>
 
       <div className="product-showcase-grid product-showcase-grid--categories">

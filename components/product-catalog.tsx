@@ -11,8 +11,8 @@ type ProductCatalogProps = {
   enquiryNumbers: string[];
 };
 
-function buildWhatsappUrl(number: string, productName: string) {
-  const message = `Hello KCEL, I want to enquire about ${productName}. Please share current availability and quote.`;
+function buildWhatsappUrl(number: string, product: Product) {
+  const message = `Hello KCEL, I want to enquire about ${product.name} (${product.category} Cells, ${product.voltage}, ${product.capacity}). Please share current availability and quote.`;
   return `https://wa.me/91${number}?text=${encodeURIComponent(message)}`;
 }
 
@@ -126,35 +126,45 @@ export function ProductCatalog({ products, enquiryNumbers }: ProductCatalogProps
       ))}
 
       {activeProduct && (
-        <div className="catalog-whatsapp-picker" role="dialog" aria-live="polite">
-          <div>
-            <CheckCircle2 aria-hidden="true" />
-            <div>
-              <strong>Send enquiry for {activeProduct.name}</strong>
-              <span>Choose the KCEL WhatsApp number to contact.</span>
-            </div>
-          </div>
-          <div className="catalog-whatsapp-actions">
-            {enquiryNumbers.map((number) => (
-              <a
-                href={buildWhatsappUrl(number, activeProduct.name)}
-                target="_blank"
-                rel="noreferrer"
-                key={number}
-              >
-                <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                {number}
-              </a>
-            ))}
-          </div>
-          <button
-            className="catalog-whatsapp-close"
-            type="button"
-            onClick={() => setActiveProduct(null)}
-            aria-label="Close WhatsApp picker"
+        <div className="catalog-whatsapp-backdrop" role="presentation">
+          <div
+            className="catalog-whatsapp-picker"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="catalog-whatsapp-title"
           >
-            <X aria-hidden="true" />
-          </button>
+            <div>
+              <CheckCircle2 aria-hidden="true" />
+              <div>
+                <strong id="catalog-whatsapp-title">Send enquiry for {activeProduct.name}</strong>
+                <span>
+                  {activeProduct.category} Cells | {activeProduct.voltage} |{" "}
+                  {activeProduct.capacity}
+                </span>
+              </div>
+            </div>
+            <div className="catalog-whatsapp-actions">
+              {enquiryNumbers.map((number) => (
+                <a
+                  href={buildWhatsappUrl(number, activeProduct)}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={number}
+                >
+                  <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                  WhatsApp {number}
+                </a>
+              ))}
+            </div>
+            <button
+              className="catalog-whatsapp-close"
+              type="button"
+              onClick={() => setActiveProduct(null)}
+              aria-label="Close WhatsApp picker"
+            >
+              <X aria-hidden="true" />
+            </button>
+          </div>
         </div>
       )}
     </>
