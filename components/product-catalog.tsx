@@ -1,7 +1,7 @@
 "use client";
 
-import { CheckCircle2, MessageCircle, PackageOpen, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { MessageCircle, PackageOpen } from "lucide-react";
+import { useMemo } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import type { Product } from "@/lib/products";
 import { cn } from "@/lib/utils";
@@ -21,7 +21,6 @@ function getCategoryId(category: Product["category"]) {
 }
 
 export function ProductCatalog({ products, enquiryNumbers }: ProductCatalogProps) {
-  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
   const groupedProducts = useMemo(
     () =>
       (["NMC", "LFP"] as const).map((category) => ({
@@ -101,22 +100,44 @@ export function ProductCatalog({ products, enquiryNumbers }: ProductCatalogProps
                         <dd>{product.capacity}</dd>
                       </div>
                     </dl>
-                    <button
-                      className={cn(
-                        buttonVariants({ variant: "default" }),
-                        "catalog-inquire-button"
-                      )}
-                      type="button"
-                      disabled={isOutOfStock}
-                      onClick={() => setActiveProduct(product)}
-                    >
-                      {isOutOfStock ? (
+                    {isOutOfStock ? (
+                      <button
+                        className={cn(
+                          buttonVariants({ variant: "default" }),
+                          "catalog-inquire-button"
+                        )}
+                        type="button"
+                        disabled
+                      >
                         <PackageOpen className="h-4 w-4" aria-hidden="true" />
-                      ) : (
-                        <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                      )}
-                      {isOutOfStock ? "Out of Stock" : "Inquire"}
-                    </button>
+                        Out of Stock
+                      </button>
+                    ) : (
+                      <details className="catalog-inquire-details">
+                        <summary
+                          className={cn(
+                            buttonVariants({ variant: "default" }),
+                            "catalog-inquire-button"
+                          )}
+                        >
+                          <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                          Inquire
+                        </summary>
+                        <div className="catalog-inline-whatsapp-actions">
+                          {enquiryNumbers.map((number) => (
+                            <a
+                              href={buildWhatsappUrl(number, product)}
+                              target="_blank"
+                              rel="noreferrer"
+                              key={number}
+                            >
+                              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                              WhatsApp {number}
+                            </a>
+                          ))}
+                        </div>
+                      </details>
+                    )}
                   </div>
                 </article>
               );
@@ -124,49 +145,6 @@ export function ProductCatalog({ products, enquiryNumbers }: ProductCatalogProps
           </div>
         </section>
       ))}
-
-      {activeProduct && (
-        <div className="catalog-whatsapp-backdrop" role="presentation">
-          <div
-            className="catalog-whatsapp-picker"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="catalog-whatsapp-title"
-          >
-            <div>
-              <CheckCircle2 aria-hidden="true" />
-              <div>
-                <strong id="catalog-whatsapp-title">Send enquiry for {activeProduct.name}</strong>
-                <span>
-                  {activeProduct.category} Cells | {activeProduct.voltage} |{" "}
-                  {activeProduct.capacity}
-                </span>
-              </div>
-            </div>
-            <div className="catalog-whatsapp-actions">
-              {enquiryNumbers.map((number) => (
-                <a
-                  href={buildWhatsappUrl(number, activeProduct)}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={number}
-                >
-                  <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                  WhatsApp {number}
-                </a>
-              ))}
-            </div>
-            <button
-              className="catalog-whatsapp-close"
-              type="button"
-              onClick={() => setActiveProduct(null)}
-              aria-label="Close WhatsApp picker"
-            >
-              <X aria-hidden="true" />
-            </button>
-          </div>
-        </div>
-      )}
     </>
   );
 }

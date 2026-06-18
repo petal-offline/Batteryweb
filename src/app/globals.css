@@ -1247,12 +1247,52 @@ img {
   font-weight: 900;
 }
 
+.catalog-inquire-details {
+  display: grid;
+  gap: 10px;
+}
+
+.catalog-inquire-details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.catalog-inquire-details summary::-webkit-details-marker {
+  display: none;
+}
+
 .catalog-inquire-button:disabled {
   cursor: not-allowed;
   color: rgba(255, 255, 255, 0.84);
   background: #65737a;
   opacity: 1;
   box-shadow: none;
+}
+
+.catalog-inline-whatsapp-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.catalog-inline-whatsapp-actions a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #0c3b2d;
+  background: #ecfff3;
+  border: 1px solid rgba(22, 162, 87, 0.24);
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.catalog-inline-whatsapp-actions a:hover {
+  color: var(--white);
+  background: #149954;
 }
 
 .catalog-whatsapp-backdrop {
@@ -1876,8 +1916,14 @@ img {
   }
 
   .catalog-whatsapp-actions,
-  .catalog-whatsapp-actions a {
+  .catalog-whatsapp-actions a,
+  .catalog-inline-whatsapp-actions,
+  .catalog-inline-whatsapp-actions a {
     width: 100%;
+  }
+
+  .catalog-inline-whatsapp-actions {
+    grid-template-columns: 1fr;
   }
 
   .modal-icon-button {
