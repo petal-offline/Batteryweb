@@ -260,12 +260,14 @@ export function ProductShowcase({ products, enquiryNumbers }: ProductShowcasePro
             </div>
             <div className="category-reveal-body">
               <p>{category.label}</p>
-              <h3>{category.title}</h3>
-              <span>{category.bestFor}</span>
+              <h3>{category.label}</h3>
+              <span>
+                {category.products.length} product listings for {category.bestFor.toLowerCase()}.
+              </span>
             </div>
             <div className="product-reveal-overlay category-reveal-overlay">
               <div>
-                <h4>{category.label}</h4>
+                <h4>{category.title}</h4>
                 <p>{category.summary}</p>
                 <button
                   className={cn(
@@ -273,7 +275,8 @@ export function ProductShowcase({ products, enquiryNumbers }: ProductShowcasePro
                     "category-see-all-button"
                   )}
                   type="button"
-                  onClick={() => {
+                  onClick={(event) => {
+                    event.stopPropagation();
                     setActiveCategory(category.category);
                     setActiveProduct(null);
                   }}
