@@ -26,6 +26,7 @@ function htmlResponse(body, status = 200) {
 function closeWithError(message) {
   const errorPayload = JSON.stringify({ message });
   const errorMessage = JSON.stringify(`authorization:github:error:${errorPayload}`);
+  const authorizingMessage = JSON.stringify("authorizing:github");
   return htmlResponse(`<!doctype html>
 <html lang="en">
   <head>
@@ -34,10 +35,27 @@ function closeWithError(message) {
   </head>
   <body>
     <script>
+      const authorizingMessage = ${authorizingMessage};
       const message = ${errorMessage};
-      if (window.opener) {
+      function sendError() {
         window.opener.postMessage(message, window.location.origin);
-        window.opener.postMessage(message, '*');
+      }
+      if (window.opener) {
+        let sent = false;
+        const finish = () => {
+          if (sent) return;
+          sent = true;
+          window.removeEventListener('message', receiveHandshake, false);
+          sendError();
+        };
+        const receiveHandshake = (event) => {
+          if (event.origin === window.location.origin && event.data === authorizingMessage) {
+            finish();
+          }
+        };
+        window.addEventListener('message', receiveHandshake, false);
+        window.opener.postMessage(authorizingMessage, window.location.origin);
+        window.setTimeout(finish, 1200);
       }
     </script>
     <p>${message}</p>
@@ -84,6 +102,7 @@ export async function onRequestGet({ request, env }) {
     provider: "github"
   });
   const successMessage = JSON.stringify(`authorization:github:success:${payload}`);
+  const authorizingMessage = JSON.stringify("authorizing:github");
   const adminUrl = new URL("/admin/#/", url.origin);
 
   return htmlResponse(`<!doctype html>
@@ -94,19 +113,40 @@ export async function onRequestGet({ request, env }) {
   </head>
   <body>
     <script>
+      const authorizingMessage = ${authorizingMessage};
       const payload = ${payload};
-      const messages = [
-        ${successMessage},
-        { type: 'authorization', provider: 'github', token: payload.token },
-        { type: 'authorization:github:success', provider: 'github', token: payload.token }
-      ];
+      const successMessage = ${successMessage};
       if (window.opener) {
-        for (const message of messages) {
-          window.opener.postMessage(message, window.location.origin);
-          window.opener.postMessage(message, '*');
-        }
-        window.setTimeout(() => window.close(), 900);
+        let sent = false;
+        const sendSuccess = () => {
+          window.opener.postMessage(successMessage, window.location.origin);
+        };
+        const finish = () => {
+          if (sent) return;
+          sent = true;
+          window.removeEventListener('message', receiveHandshake, false);
+          sendSuccess();
+          window.setTimeout(() => window.close(), 900);
+        };
+        const receiveHandshake = (event) => {
+          if (event.origin === window.location.origin && event.data === authorizingMessage) {
+            finish();
+          }
+        };
+        window.addEventListener('message', receiveHandshake, false);
+        window.opener.postMessage(authorizingMessage, window.location.origin);
+        window.setTimeout(finish, 1200);
+        window.setTimeout(() => {
+          if (!sent) {
+            sendSuccess();
+          }
+        }, 2200);
       } else {
+        window.location.href = '${adminUrl.toString()}';
+      }
+    </script>
+    <script>
+      if (!window.opener) {
         window.location.href = '${adminUrl.toString()}';
       }
     </script>
