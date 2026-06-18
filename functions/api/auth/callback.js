@@ -43,6 +43,7 @@ export async function onRequestGet({ request, env }) {
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
   const cookies = parseCookies(request.headers.get("cookie"));
+  const callbackUrl = new URL("/api/auth/callback", url.origin);
 
   if (!code || !state || cookies.decap_oauth_state !== state) {
     return closeWithError("GitHub authorization could not be verified.");
@@ -57,14 +58,17 @@ export async function onRequestGet({ request, env }) {
     body: JSON.stringify({
       client_id: env.GITHUB_CLIENT_ID,
       client_secret: env.GITHUB_CLIENT_SECRET,
-      code
+      code,
+      redirect_uri: callbackUrl.toString()
     })
   });
 
   const tokenData = await tokenResponse.json();
 
   if (!tokenResponse.ok || !tokenData.access_token) {
-    return closeWithError("GitHub did not return an access token.");
+    return closeWithError(
+      tokenData.error_description || tokenData.error || "GitHub did not return an access token."
+    );
   }
 
   const payload = JSON.stringify({

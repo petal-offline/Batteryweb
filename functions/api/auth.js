@@ -30,7 +30,7 @@ export async function onRequestGet({ request, env }) {
     status: 302,
     headers: {
       location: authorizeUrl.toString(),
-      "set-cookie": `decap_oauth_state=${state}; Path=/api/auth; HttpOnly; Secure; SameSite=Lax; Max-Age=600`
+      "set-cookie": `decap_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`
     }
   });
 }
