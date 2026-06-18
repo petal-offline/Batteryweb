@@ -1,6 +1,6 @@
 {
   "name": "HLY 26650 3.6V 5000mAh 3C Lithium-Ion Rechargeable Cell",
-  "category": "NCM",
+  "category": "NMC",
   "description": "HLY 26650 rechargeable lithium-ion cell with 3C discharge rating for tools, mobility, and custom packs.",
   "image": "/uploads/product-images/hly-26650-5000mah.jpg",
   "voltage": "3.6V",

@@ -34,7 +34,7 @@ collections:
         name: category
         widget: select
         options:
-          - NCM
+          - NMC
           - LFP
       - label: Product Description
         name: description

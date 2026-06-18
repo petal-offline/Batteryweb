@@ -8,7 +8,7 @@ export type ProductSpecification = {
 
 export type Product = {
   name: string;
-  category: "NCM" | "LFP";
+  category: "NMC" | "LFP";
   description: string;
   image: string;
   voltage: string;

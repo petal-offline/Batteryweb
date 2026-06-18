@@ -1,6 +1,6 @@
 {
   "name": "DMEGC INR18650-26E Li-Ion Cells",
-  "category": "NCM",
+  "category": "NMC",
   "description": "DMEGC INR18650-26E lithium-ion cells suited for power tools, mobility packs, and compact electronics.",
   "image": "/uploads/product-images/dmegc-inr18650-26e.png",
   "voltage": "3.7V",

@@ -1,6 +1,6 @@
 {
   "name": "DMEGC INR18650-29E Li-Ion Cells",
-  "category": "NCM",
+  "category": "NMC",
   "description": "DMEGC 18650-29E lithium-ion cells with higher 2900mAh capacity for compact energy applications.",
   "image": "/uploads/product-images/dmegc-inr18650-29e.png",
   "voltage": "3.7V",

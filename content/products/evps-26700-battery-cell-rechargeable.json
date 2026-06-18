@@ -1,6 +1,6 @@
 {
   "name": "EVPS 26700 Battery Cell Rechargeable",
-  "category": "NCM",
+  "category": "NMC",
   "description": "Rechargeable cylindrical EVPS 26700 cell for pack builders and industrial battery assemblies.",
   "image": "/uploads/product-images/evps-26700.jpg",
   "voltage": "3.2V",

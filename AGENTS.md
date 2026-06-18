@@ -89,14 +89,13 @@ CMS product records map to JSON files in `content/products/`.
 
 The public product section is intentionally category-first:
 
-- Homepage shows only `NCM Cells` and `LFP Cells`.
+- Homepage shows only `NMC Cells` and `LFP Cells`.
 - The old broad Lithium-ion category card has been removed.
-- Each category card opens a modal listing all products for that category.
-- Product-level `Inquire` opens a two-number WhatsApp picker.
+- Each category card links to `/products#nmc` or `/products#lfp`.
+- Product listing is handled on the dedicated `/products` page.
+- Product-level `Inquire` opens a two-number WhatsApp picker on `/products`.
 - `Out of Stock` disables the product-level enquiry button.
 - Product images should be static repo assets under `public/uploads/product-images/`, not external hotlinks.
-
-The public UI fetches product JSON from GitHub at runtime as a freshness layer, with static build data as fallback. This lets stock/text edits appear quickly after the CMS commits to GitHub. Newly uploaded static images still need the normal Cloudflare Pages rebuild before they are served from the site domain.
 
 To add a product:
 
@@ -104,7 +103,7 @@ To add a product:
 2. Log in with a GitHub account that has repo write access.
 3. Open `Products`.
 4. Click `New Product`.
-5. Fill name, category (`NCM` or `LFP`), description, voltage, capacity, image, price, stock status, sort order, and specifications.
+5. Fill name, category (`NMC` or `LFP`), description, voltage, capacity, image, price, stock status, sort order, and specifications.
 6. Save/publish.
 
 To remove a product:
@@ -122,7 +121,7 @@ Decap commits the content change to GitHub. Cloudflare Pages rebuilds automatica
 - The hero is intentionally visual and industrial, using `public/images/battery-cells-lab.png`.
 - The floating WhatsApp CTA links to `https://wa.me/918799759565`.
 - Mobile hero spacing has been tuned to avoid the white intro section overlapping the trust tags on short phone viewports.
-- Product category cards use hover/focus reveal overlays with a single `See All` action.
+- Product category cards use CSS hover/focus reveal overlays with a single `See All` link to `/products`.
 
 ## Before Handoff
 

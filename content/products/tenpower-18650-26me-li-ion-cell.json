@@ -1,6 +1,6 @@
 {
   "name": "TENPOWER 18650-26ME Li-Ion Cell",
-  "category": "NCM",
+  "category": "NMC",
   "description": "TENPOWER 18650 lithium-ion cell for high-current battery pack requirements.",
   "image": "/uploads/product-images/tenpower-18650-26me.jpg",
   "voltage": "3.7V",

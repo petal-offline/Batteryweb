@@ -1,6 +1,6 @@
 {
   "name": "CBAK 15000mAh Lithium Cells",
-  "category": "NCM",
+  "category": "NMC",
   "description": "CBAK 32140 high-capacity lithium cell for larger packs and energy storage requirements.",
   "image": "/uploads/product-images/cbak-15000mah.webp",
   "voltage": "3.2V",
