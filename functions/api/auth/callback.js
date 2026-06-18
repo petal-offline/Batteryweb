@@ -17,23 +17,31 @@ function htmlResponse(body, status = 200) {
   return new Response(body, {
     status,
     headers: {
-      "content-type": "text/html; charset=utf-8"
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-store"
     }
   });
 }
 
 function closeWithError(message) {
+  const errorPayload = JSON.stringify({ message });
+  const errorMessage = JSON.stringify(`authorization:github:error:${errorPayload}`);
   return htmlResponse(`<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Authentication error</title>
+  </head>
   <body>
     <script>
-      window.opener && window.opener.postMessage(
-        'authorization:github:error:${JSON.stringify({ message })}',
-        '*'
-      );
-      window.close();
+      const message = ${errorMessage};
+      if (window.opener) {
+        window.opener.postMessage(message, window.location.origin);
+        window.opener.postMessage(message, '*');
+      }
     </script>
     <p>${message}</p>
+    <p>Please close this window and try signing in again from the admin page.</p>
   </body>
 </html>`, 400);
 }
@@ -75,18 +83,35 @@ export async function onRequestGet({ request, env }) {
     token: tokenData.access_token,
     provider: "github"
   });
+  const successMessage = JSON.stringify(`authorization:github:success:${payload}`);
+  const adminUrl = new URL("/admin/#/", url.origin);
 
   return htmlResponse(`<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Authentication complete</title>
+  </head>
   <body>
     <script>
-      window.opener && window.opener.postMessage(
-        'authorization:github:success:${payload}',
-        '*'
-      );
-      window.close();
+      const payload = ${payload};
+      const messages = [
+        ${successMessage},
+        { type: 'authorization', provider: 'github', token: payload.token },
+        { type: 'authorization:github:success', provider: 'github', token: payload.token }
+      ];
+      if (window.opener) {
+        for (const message of messages) {
+          window.opener.postMessage(message, window.location.origin);
+          window.opener.postMessage(message, '*');
+        }
+        window.setTimeout(() => window.close(), 900);
+      } else {
+        window.location.href = '${adminUrl.toString()}';
+      }
     </script>
-    <p>Authentication complete. You can close this window.</p>
+    <p>Authentication complete. Returning to the admin panel...</p>
+    <p><a href="${adminUrl.toString()}">Go back to the admin panel</a></p>
   </body>
 </html>`);
 }
