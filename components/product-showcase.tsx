@@ -137,6 +137,7 @@ function getCategoryProducts(products: Product[], category: ProductCategory) {
 export function ProductShowcase({ products, enquiryNumbers }: ProductShowcaseProps) {
   const [liveProducts, setLiveProducts] = useState(products);
   const [activeCategory, setActiveCategory] = useState<ProductCategory | null>(null);
+  const [revealedCategory, setRevealedCategory] = useState<ProductCategory | null>(null);
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
@@ -210,12 +211,44 @@ export function ProductShowcase({ products, enquiryNumbers }: ProductShowcasePro
       <div className="product-showcase-grid product-showcase-grid--categories">
         {categories.map((category, index) => (
           <motion.article
-            className="category-reveal-card"
+            className={cn(
+              "category-reveal-card product-reveal-card",
+              revealedCategory === category.category && "product-reveal-card--revealed"
+            )}
             data-slot="product-reveal-card"
+            tabIndex={0}
             initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            whileHover={shouldReduceMotion ? undefined : { y: -8, scale: 1.025 }}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.985 }}
             viewport={{ once: true, amount: 0.35 }}
-            transition={{ delay: index * 0.08, duration: 0.45, ease: "easeOut" }}
+            transition={{
+              delay: index * 0.08,
+              duration: 0.45,
+              ease: "easeOut",
+              type: "spring",
+              stiffness: 260,
+              damping: 26
+            }}
+            onMouseEnter={() => setRevealedCategory(category.category)}
+            onMouseLeave={() => setRevealedCategory(null)}
+            onFocus={() => setRevealedCategory(category.category)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                setRevealedCategory(null);
+              }
+            }}
+            onClick={(event) => {
+              const target = event.target as HTMLElement;
+
+              if (target.closest("button")) {
+                return;
+              }
+
+              setRevealedCategory((current) =>
+                current === category.category ? null : category.category
+              );
+            }}
             key={category.category}
           >
             <div className="category-reveal-image">

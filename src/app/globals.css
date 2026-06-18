@@ -541,12 +541,24 @@ img {
   position: relative;
   min-height: 460px;
   overflow: hidden;
+  cursor: pointer;
   color: var(--white);
   background: #0c1519;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   box-shadow: 0 28px 70px rgba(14, 25, 30, 0.18);
   isolation: isolate;
+  outline: none;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.category-reveal-card:hover,
+.category-reveal-card:focus-visible,
+.category-reveal-card.product-reveal-card--revealed {
+  border-color: rgba(200, 133, 28, 0.48);
+  box-shadow: 0 34px 86px rgba(14, 25, 30, 0.28);
 }
 
 .category-reveal-image {
