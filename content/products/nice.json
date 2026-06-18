@@ -1,0 +1,10 @@
+{
+  "image": "/images/battery-cells-lab.png",
+  "sortOrder": 10,
+  "name": "nice",
+  "category": "NMC",
+  "description": "hi",
+  "voltage": "3.6V",
+  "capacity": "59000mAh",
+  "stockStatus": "In Stock"
+}
