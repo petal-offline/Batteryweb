@@ -7,6 +7,7 @@ This project is the production website for KULDEEP COMMUNICATION & ELECTRONICS (
 - Next.js static export with `output: "export"` in `next.config.mjs`
 - Tailwind CSS in `src/app/globals.css`
 - Product data as JSON files in `content/products/`
+- Product photos as static files in `public/uploads/product-images/`
 - Decap CMS admin UI in `public/admin/`
 - Cloudflare Pages Functions for GitHub OAuth in `functions/api/auth.js` and `functions/api/auth/callback.js`
 
@@ -86,13 +87,24 @@ Commit and push the config change after the domain is live.
 
 CMS product records map to JSON files in `content/products/`.
 
+The public product section is intentionally category-first:
+
+- Homepage shows only `NCM Cells` and `LFP Cells`.
+- The old broad Lithium-ion category card has been removed.
+- Each category card opens a modal listing all products for that category.
+- Product-level `Inquire` opens a two-number WhatsApp picker.
+- `Out of Stock` disables the product-level enquiry button.
+- Product images should be static repo assets under `public/uploads/product-images/`, not external hotlinks.
+
+The public UI fetches product JSON from GitHub at runtime as a freshness layer, with static build data as fallback. This lets stock/text edits appear quickly after the CMS commits to GitHub. Newly uploaded static images still need the normal Cloudflare Pages rebuild before they are served from the site domain.
+
 To add a product:
 
 1. Go to `/admin/`.
 2. Log in with a GitHub account that has repo write access.
 3. Open `Products`.
 4. Click `New Product`.
-5. Fill name, category, description, image, price, stock status, sort order, and specifications.
+5. Fill name, category (`NCM` or `LFP`), description, voltage, capacity, image, price, stock status, sort order, and specifications.
 6. Save/publish.
 
 To remove a product:
@@ -110,7 +122,7 @@ Decap commits the content change to GitHub. Cloudflare Pages rebuilds automatica
 - The hero is intentionally visual and industrial, using `public/images/battery-cells-lab.png`.
 - The floating WhatsApp CTA links to `https://wa.me/918799759565`.
 - Mobile hero spacing has been tuned to avoid the white intro section overlapping the trust tags on short phone viewports.
-- Product reveal cards use a CSS hover/focus/tap fallback in addition to Framer Motion so the deployed Cloudflare build remains interactive.
+- Product category cards use hover/focus reveal overlays with a single `See All` action.
 
 ## Before Handoff
 

@@ -1,0 +1,25 @@
+{
+  "name": "Highstar A Grade 3.2V 100Ah Laser LiFePO4 Cell",
+  "category": "LFP",
+  "description": "Highstar A-grade 100Ah LiFePO4 prismatic cell for stable industrial and solar storage packs.",
+  "image": "/uploads/product-images/highstar-100ah-laser.jpg",
+  "voltage": "3.2V",
+  "capacity": "100Ah",
+  "price": "Contact for quote",
+  "stockStatus": "In Stock",
+  "sortOrder": 11,
+  "specifications": [
+    {
+      "label": "Brand",
+      "value": "Highstar"
+    },
+    {
+      "label": "Voltage",
+      "value": "3.2V"
+    },
+    {
+      "label": "Capacity",
+      "value": "100Ah"
+    }
+  ]
+}

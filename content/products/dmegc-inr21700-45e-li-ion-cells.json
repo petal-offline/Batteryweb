@@ -1,0 +1,25 @@
+{
+  "name": "DMEGC INR21700-45E Li-Ion Cells",
+  "category": "NCM",
+  "description": "DMEGC 21700 4500mAh lithium-ion cells for EV, power tool, and high-density battery packs.",
+  "image": "/uploads/product-images/dmegc-inr21700-45e.jpg",
+  "voltage": "3.7V",
+  "capacity": "4500mAh",
+  "price": "Contact for quote",
+  "stockStatus": "In Stock",
+  "sortOrder": 7,
+  "specifications": [
+    {
+      "label": "Model",
+      "value": "INR21700-45E"
+    },
+    {
+      "label": "Voltage",
+      "value": "3.7V"
+    },
+    {
+      "label": "Capacity",
+      "value": "4500mAh"
+    }
+  ]
+}

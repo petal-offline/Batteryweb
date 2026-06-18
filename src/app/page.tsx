@@ -32,7 +32,7 @@ export default function Home() {
           <p className="eyebrow">Wholesale battery cell supply | New Delhi</p>
           <h1>KULDEEP COMMUNICATION & ELECTRONICS (KCEL)</h1>
           <p className="hero-copy">
-            Industrial supply of lithium-ion, NMC, and LFP battery cells for pack builders,
+            Industrial supply of lithium-ion, NCM, and LFP battery cells for pack builders,
             OEM requirements, backup systems, solar storage, and specialized energy projects.
           </p>
           <div className="hero-actions">
@@ -52,7 +52,7 @@ export default function Home() {
             </span>
             <span>
               <ShieldCheck size={18} aria-hidden="true" />
-              NMC / LFP cells
+              NCM / LFP cells
             </span>
             <span>
               <Factory size={18} aria-hidden="true" />
@@ -78,7 +78,7 @@ export default function Home() {
       </section>
 
       <section className="products-section" id="products" aria-labelledby="products-title">
-        <ProductShowcase products={products} enquiryUrl={whatsappUrl} />
+        <ProductShowcase products={products} enquiryNumbers={contactNumbers} />
       </section>
 
       <section className="capabilities" id="capabilities" aria-labelledby="capabilities-title">
@@ -130,7 +130,7 @@ export default function Home() {
         <div className="footer-grid">
           <div>
             <strong>KULDEEP COMMUNICATION & ELECTRONICS (KCEL)</strong>
-            <p>Wholesaler and supplier of lithium-ion, NMC, and LFP battery cells.</p>
+            <p>Wholesaler and supplier of lithium-ion, NCM, and LFP battery cells.</p>
           </div>
           <address>
             <span>

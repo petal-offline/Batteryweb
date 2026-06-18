@@ -1,0 +1,25 @@
+{
+  "name": "Highstar A Grade 3.2V 314Ah Prismatic LiFePO4 Cell",
+  "category": "LFP",
+  "description": "Highstar 314Ah prismatic LiFePO4 cell for large storage banks and industrial backup systems.",
+  "image": "/uploads/product-images/highstar-314ah-prismatic.png",
+  "voltage": "3.2V",
+  "capacity": "314Ah",
+  "price": "Contact for quote",
+  "stockStatus": "In Stock",
+  "sortOrder": 15,
+  "specifications": [
+    {
+      "label": "Brand",
+      "value": "Highstar"
+    },
+    {
+      "label": "Voltage",
+      "value": "3.2V"
+    },
+    {
+      "label": "Capacity",
+      "value": "314Ah"
+    }
+  ]
+}

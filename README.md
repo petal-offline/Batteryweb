@@ -1,6 +1,6 @@
 # KULDEEP COMMUNICATION & ELECTRONICS (KCEL)
 
-Production static website for KULDEEP COMMUNICATION & ELECTRONICS (KCEL), a New Delhi based wholesaler and supplier of lithium-ion, NMC, and LFP battery cells.
+Production static website for KULDEEP COMMUNICATION & ELECTRONICS (KCEL), a New Delhi based wholesaler and supplier of lithium-ion, NCM, and LFP battery cells.
 
 The site is built with Next.js static export and Decap CMS. Product inventory lives in Git as JSON under `content/products`, so CMS edits commit back to the repository and trigger a Cloudflare Pages rebuild.
 
@@ -66,17 +66,24 @@ Each product is a JSON file with:
 
 - Product name
 - Product description
-- Image path
-- Specifications
-- Price
+- Category: `NCM` or `LFP`
+- Static image path
+- Voltage
+- Capacity
+- Optional price
 - Stock status
 - Sort order
+- Specifications
 
 Uploaded product images from Decap CMS are stored in:
 
 ```text
-public/uploads/
+public/uploads/product-images/
 ```
+
+The public product section shows only two homepage category cards: `NCM Cells` and
+`LFP Cells`. Each card opens a modal with all products in that category. Product
+enquiry buttons open a WhatsApp contact picker with both KCEL sales numbers.
 
 ## Decap CMS
 
@@ -234,8 +241,8 @@ Decap CMS commits the change to GitHub. Cloudflare Pages then rebuilds and repub
 
 1. Click **Products**.
 2. Click **New Product**.
-3. Enter the product name, category, description, price, stock status, and specifications.
-4. Upload a product image.
+3. Enter the product name, category, description, voltage, capacity, price, stock status, and specifications.
+4. Upload a static product image.
 5. Set the sort order if the product should appear in a specific position.
 6. Click **Save**.
 
@@ -249,7 +256,7 @@ Decap CMS commits the change to GitHub. Cloudflare Pages then rebuilds and repub
 
 ### 6. Publish Timeline
 
-After saving, the CMS commits the update to GitHub. Cloudflare Pages automatically starts a rebuild. Most small content changes appear on the live site within one to three minutes, depending on Cloudflare queue time.
+After saving, the CMS commits the update to GitHub. The product UI also attempts to refresh product JSON directly from GitHub at runtime, so stock/text edits can appear quickly. Cloudflare Pages still automatically starts a rebuild, which is required for newly uploaded static image files to become available from the site domain. Most small content changes appear on the live site within one to three minutes, depending on Cloudflare queue time.
 
 ## Agent Handoff Notes
 

@@ -7,8 +7,8 @@ backend:
 
 local_backend: true
 
-media_folder: public/uploads
-public_folder: /uploads
+media_folder: public/uploads/product-images
+public_folder: /uploads/product-images
 site_url: https://batteryweb-8d0.pages.dev
 display_url: https://batteryweb-8d0.pages.dev
 logo_url: /images/battery-cells-lab.png
@@ -23,7 +23,7 @@ collections:
     format: json
     slug: "{{slug}}"
     identifier_field: name
-    summary: "{{name}} - {{stockStatus}} - {{price}}"
+    summary: "{{category}} - {{name}} - {{stockStatus}}"
     editor:
       preview: false
     fields:
@@ -34,10 +34,8 @@ collections:
         name: category
         widget: select
         options:
-          - Lithium-ion
-          - NMC
+          - NCM
           - LFP
-          - Battery Cell
       - label: Product Description
         name: description
         widget: text
@@ -46,17 +44,25 @@ collections:
         widget: image
         choose_url: false
         default: /images/battery-cells-lab.png
+        hint: Upload a static product photo into the repository.
+      - label: Voltage
+        name: voltage
+        widget: string
+        hint: Example: 3.2V
+      - label: Capacity
+        name: capacity
+        widget: string
+        hint: Example: 100Ah or 5000mAh
       - label: Price
         name: price
         widget: string
+        required: false
         hint: Use exact pricing, a range, or text such as "Contact for Quote".
       - label: Stock Status
         name: stockStatus
         widget: select
         options:
           - In Stock
-          - Low Stock
-          - Contact for Quote
           - Out of Stock
       - label: Sort Order
         name: sortOrder

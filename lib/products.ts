@@ -8,11 +8,13 @@ export type ProductSpecification = {
 
 export type Product = {
   name: string;
-  category: string;
+  category: "NCM" | "LFP";
   description: string;
   image: string;
-  price: string;
-  stockStatus: "In Stock" | "Low Stock" | "Contact for Quote" | "Out of Stock";
+  voltage: string;
+  capacity: string;
+  price?: string;
+  stockStatus: "In Stock" | "Out of Stock";
   sortOrder?: number;
   specifications: ProductSpecification[];
 };
@@ -30,7 +32,8 @@ function isProduct(value: unknown): value is Product {
     typeof product.category === "string" &&
     typeof product.description === "string" &&
     typeof product.image === "string" &&
-    typeof product.price === "string" &&
+    typeof product.voltage === "string" &&
+    typeof product.capacity === "string" &&
     typeof product.stockStatus === "string" &&
     Array.isArray(product.specifications)
   );

@@ -1,0 +1,25 @@
+{
+  "name": "Highstar A Grade 3.2V 100Ah Screw Prismatic LiFePO4 Cell",
+  "category": "LFP",
+  "description": "Highstar screw-terminal prismatic LiFePO4 cell for robust commercial pack construction.",
+  "image": "/uploads/product-images/highstar-100ah-screw.jpg",
+  "voltage": "3.2V",
+  "capacity": "100Ah",
+  "price": "Contact for quote",
+  "stockStatus": "In Stock",
+  "sortOrder": 13,
+  "specifications": [
+    {
+      "label": "Brand",
+      "value": "Highstar"
+    },
+    {
+      "label": "Terminal",
+      "value": "Screw prismatic"
+    },
+    {
+      "label": "Capacity",
+      "value": "100Ah"
+    }
+  ]
+}
