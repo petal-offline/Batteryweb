@@ -1886,18 +1886,25 @@ img {
   }
 
   .catalog-product-card {
-    display: grid;
-    grid-template-columns: 112px minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
   }
 
   .catalog-product-image {
-    height: 100%;
-    min-height: 190px;
-    flex: none;
+    height: clamp(260px, 78vw, 390px);
+    min-height: 0;
+    flex: 0 0 auto;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .catalog-product-image img {
+    object-fit: contain;
+    object-position: center;
+    padding: 10px;
   }
 
   .catalog-product-body {
-    padding: 14px;
+    padding: 18px;
   }
 
   .catalog-product-body dl {
