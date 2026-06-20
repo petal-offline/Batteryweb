@@ -20,8 +20,14 @@ export type Product = {
 };
 
 const PRODUCTS_DIRECTORY = path.join(process.cwd(), "content", "products");
+const FALLBACK_PRODUCT_IMAGE = "/images/battery-cells-lab.png";
 
-function isProduct(value: unknown): value is Product {
+type ProductRecord = Omit<Product, "image" | "specifications"> & {
+  image?: unknown;
+  specifications?: unknown;
+};
+
+function isProduct(value: unknown): value is ProductRecord {
   if (!value || typeof value !== "object") {
     return false;
   }
@@ -29,18 +35,45 @@ function isProduct(value: unknown): value is Product {
   const product = value as Record<string, unknown>;
   return (
     typeof product.name === "string" &&
-    typeof product.category === "string" &&
+    (product.category === "NMC" || product.category === "LFP") &&
     typeof product.description === "string" &&
-    typeof product.image === "string" &&
     typeof product.voltage === "string" &&
     typeof product.capacity === "string" &&
-    typeof product.stockStatus === "string"
+    (product.stockStatus === "In Stock" || product.stockStatus === "Out of Stock")
   );
 }
 
-function normalizeProduct(product: Product): Product {
+function normalizeImagePath(value: unknown): string {
+  if (typeof value === "string") {
+    const trimmedValue = value.trim();
+
+    if (!trimmedValue || trimmedValue.startsWith("blob:") || trimmedValue.startsWith("data:")) {
+      return FALLBACK_PRODUCT_IMAGE;
+    }
+
+    return trimmedValue.startsWith("http") || trimmedValue.startsWith("/")
+      ? trimmedValue
+      : `/${trimmedValue}`;
+  }
+
+  if (Array.isArray(value)) {
+    return normalizeImagePath(value[0]);
+  }
+
+  if (value && typeof value === "object") {
+    const imageRecord = value as Record<string, unknown>;
+    return normalizeImagePath(
+      imageRecord.path ?? imageRecord.url ?? imageRecord.src ?? imageRecord.publicUrl
+    );
+  }
+
+  return FALLBACK_PRODUCT_IMAGE;
+}
+
+function normalizeProduct(product: ProductRecord): Product {
   return {
     ...product,
+    image: normalizeImagePath(product.image),
     specifications: Array.isArray(product.specifications) ? product.specifications : []
   };
 }

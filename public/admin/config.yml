@@ -7,8 +7,8 @@ backend:
 
 local_backend: true
 
-media_folder: public/uploads/product-images
-public_folder: /uploads/product-images
+media_folder: "public/uploads/product-images"
+public_folder: "/uploads/product-images"
 site_url: https://thekcel.com
 display_url: https://thekcel.com
 logo_url: /images/battery-cells-lab.png
@@ -43,8 +43,15 @@ collections:
         name: image
         widget: image
         choose_url: false
+        allow_multiple: false
+        media_folder: /public/uploads/product-images
+        public_folder: /uploads/product-images
         default: /images/battery-cells-lab.png
-        hint: Upload a static product photo into the repository.
+        hint: Upload one static JPG, JPEG, PNG, or WebP product photo. Keep the file under 5 MB.
+        media_library:
+          config:
+            multiple: false
+            max_file_size: 5242880
       - label: Voltage
         name: voltage
         widget: string
