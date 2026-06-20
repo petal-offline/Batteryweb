@@ -1,13 +1,8 @@
 {
-  "name": "DMEGC INR18650-26E Li-Ion Cells",
-  "category": "NMC",
-  "description": "DMEGC INR18650-26E lithium-ion cells suited for power tools, mobility packs, and compact electronics.",
-  "image": "/uploads/product-images/dmegc-inr18650-26e.png",
-  "voltage": "3.7V",
-  "capacity": "2600mAh",
-  "price": "Contact for quote",
   "stockStatus": "In Stock",
-  "sortOrder": 3,
+  "price": "Contact for quote",
+  "name": "DMEGC INR18650-26E Li-Ion Cells",
+  "sortOrder": 200,
   "specifications": [
     {
       "label": "Model",
@@ -21,5 +16,10 @@
       "label": "Capacity",
       "value": "2600mAh"
     }
-  ]
+  ],
+  "capacity": "2600mAh",
+  "image": "/uploads/product-images/dmegc-inr18650-26e.png",
+  "description": "DMEGC INR18650-26E lithium-ion cells suited for power tools, mobility packs, and compact electronics.",
+  "category": "NMC",
+  "voltage": "3.7V"
 }
