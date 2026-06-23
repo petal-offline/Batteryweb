@@ -1,10 +1,11 @@
 {
-  "image": "/uploads/product-images/whatsapp-image-2026-06-23-at-6.03.43-pm-1-.jpeg",
-  "sortOrder": 200,
+  "stockStatus": "In Stock",
   "name": "HUNAN HUANXING 3.2V 32700-6000mAh",
-  "category": "NMC",
-  "description": "HUNAN HUANXING 3.2V 32700-6000mAh",
-  "voltage": "3.2",
+  "sortOrder": 200,
+  "specifications": [],
   "capacity": "6000",
-  "stockStatus": "In Stock"
+  "image": "/uploads/product-images/whatsapp-image-2026-06-23-at-6.03.43-pm-1-.jpeg",
+  "description": "HUNAN HUANXING 3.2V 32700-6000mAh",
+  "category": "NMC",
+  "voltage": "3.2"
 }
