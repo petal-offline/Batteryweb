@@ -1,10 +1,10 @@
 {
-  "image": "/uploads/product-images/greatpower.png",
+  "image": "/uploads/product-images/chatgpt-image-aug-7-2026-04_23_34-pm.png",
   "sortOrder": 10,
-  "name": "GREAT POWER 50Ah (LASER TYPE)",
+  "name": "GREAT POWER 100Ah (LASER TYPE)",
   "category": "LFP",
   "description": "GREAT POWER 50Ah (LASER TYPE)",
   "voltage": "3.2V",
-  "capacity": "50Ah",
+  "capacity": "100Ah",
   "stockStatus": "In Stock"
 }
