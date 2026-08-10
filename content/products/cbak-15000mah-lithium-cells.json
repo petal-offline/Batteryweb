@@ -1,12 +1,7 @@
 {
-  "name": "CBAK 15000mAh Lithium Cells",
-  "category": "NMC",
-  "description": "CBAK 32140 high-capacity lithium cell for larger packs and energy storage requirements.",
-  "image": "/uploads/product-images/cbak-15000mah.webp",
-  "voltage": "3.2V",
-  "capacity": "15000mAh",
-  "price": "Contact for quote",
   "stockStatus": "In Stock",
+  "price": "Contact for quote",
+  "name": "CBAK 15000mAh Lithium Cells",
   "sortOrder": 9,
   "specifications": [
     {
@@ -21,5 +16,10 @@
       "label": "Capacity",
       "value": "15000mAh"
     }
-  ]
+  ],
+  "capacity": "15000mAh",
+  "image": "/uploads/product-images/cbak-15000mah.webp",
+  "description": "CBAK 32140 high-capacity lithium cell for larger packs and energy storage requirements.",
+  "category": "LFP",
+  "voltage": "3.2V"
 }
