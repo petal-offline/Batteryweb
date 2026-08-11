@@ -93,6 +93,9 @@ The public product section is intentionally category-first:
 - The old broad Lithium-ion category card has been removed.
 - Each category card links to `/products#nmc` or `/products#lfp`.
 - Product listing is handled on the dedicated `/products` page.
+- The homepage `Battery` section is enquiry-led and currently has `Two-Wheeler`,
+  `Three-Wheeler`, and `Inverter` solution cards. These are not CMS product
+  categories; their quote links are pre-filled for the primary KCEL WhatsApp number.
 - Product-level `Inquire` opens a two-number WhatsApp picker on `/products`.
 - `Out of Stock` disables the product-level enquiry button.
 - Product images should be static repo assets under `public/uploads/product-images/`, not external hotlinks.

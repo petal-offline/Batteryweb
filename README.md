@@ -85,6 +85,10 @@ The public product section shows only two homepage category cards: `NMC Cells` a
 `LFP Cells`. Each card links to the dedicated `/products` page. Product enquiry
 buttons on that page open a WhatsApp contact picker with both KCEL sales numbers.
 
+The homepage also has a separate `Battery` solutions section for `Two-Wheeler`,
+`Three-Wheeler`, and `Inverter` requirements. These are enquiry-led solution cards,
+not CMS product categories. Each card opens a pre-filled WhatsApp quote request.
+
 ## Decap CMS
 
 The admin portal is available at:

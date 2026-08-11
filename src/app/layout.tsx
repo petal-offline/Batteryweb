@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     template: "%s | KCEL"
   },
   description:
-    "KCEL is a New Delhi based wholesaler and supplier of lithium-ion, NMC, and LFP battery cells for industrial and commercial buyers.",
+    "KCEL is a New Delhi based supplier of lithium-ion, NMC, and LFP battery cells, plus battery solutions for mobility and backup power requirements.",
   openGraph: {
     title: "KULDEEP COMMUNICATION & ELECTRONICS (KCEL)",
     description:
-      "Industrial battery cell supply for lithium-ion, NMC, and LFP requirements.",
+      "Industrial battery cell supply and battery solutions for mobility and backup power requirements.",
     url: siteUrl,
     siteName: "KCEL",
     images: [

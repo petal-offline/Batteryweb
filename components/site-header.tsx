@@ -45,6 +45,7 @@ export function SiteHeader() {
       </a>
       <nav className="nav-links">
         <a href="#products">Products</a>
+        <a href="#battery">Battery</a>
         <a href="#capabilities">Capabilities</a>
         <a href="#contact">Contact</a>
       </nav>

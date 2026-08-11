@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { ProductShowcase } from "@/components/product-showcase";
+import { BatterySolutions } from "@/components/battery-solutions";
 import { SiteHeader } from "@/components/site-header";
 import { getProducts } from "@/lib/products";
 
@@ -32,8 +33,9 @@ export default function Home() {
           <p className="eyebrow">Wholesale battery cell supply | New Delhi</p>
           <h1>KULDEEP COMMUNICATION & ELECTRONICS (KCEL)</h1>
           <p className="hero-copy">
-            Industrial supply of lithium-ion, NMC, and LFP battery cells for pack builders,
-            OEM requirements, backup systems, solar storage, and specialized energy projects.
+            Industrial supply of lithium-ion, NMC, and LFP battery cells, plus application-ready
+            battery solutions for mobility, backup systems, solar storage, and specialized energy
+            projects.
           </p>
           <div className="hero-actions">
             <a className="primary-action" href={whatsappUrl} target="_blank" rel="noreferrer">
@@ -80,6 +82,8 @@ export default function Home() {
       <section className="products-section" id="products" aria-labelledby="products-title">
         <ProductShowcase products={products} />
       </section>
+
+      <BatterySolutions />
 
       <section className="capabilities" id="capabilities" aria-labelledby="capabilities-title">
         <div className="section-heading">
@@ -130,7 +134,7 @@ export default function Home() {
         <div className="footer-grid">
           <div>
             <strong>KULDEEP COMMUNICATION & ELECTRONICS (KCEL)</strong>
-            <p>Wholesaler and supplier of lithium-ion, NMC, and LFP battery cells.</p>
+            <p>Wholesaler and supplier of battery cells and battery solutions for industrial buyers.</p>
           </div>
           <address>
             <span>
